@@ -11,7 +11,7 @@ jobs:
       - name: Get Repositories
         id: repos
         run: |
-          response=$(curl -s -H "Authorization: token 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" "https://api.github.com/user/repo")
+          response=$(curl -s -H "Authorization: token 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" "https://api.github.com/user/repos")
           echo "::set-output name=response::$response"
       - name: Check for New Repositories
         run: |
