@@ -28,5 +28,5 @@ jobs:
             This pull request adds a workflow file to the repository.
           path: ".github/workflows/main.yml"
           branch-suffix: timestamp
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: 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
         if: ${{ steps.list-repos.outputs.data[0].created_at > github.event.created_at }}
