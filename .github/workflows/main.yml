@@ -2,7 +2,7 @@ name: New Repositories
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   list_repositories:
     name: List New Repositories
