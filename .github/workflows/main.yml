@@ -14,7 +14,7 @@ jobs:
         with:
           route: GET /user/repos
           headers: |
-            Authorization: ${{ secrets.GITHUB_TOKEN }}
+            Authorization: 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
           query: |
             sort: created
             direction: desc
