@@ -11,7 +11,7 @@ jobs:
       - name: Get Repositories
         id: repos
         run: |
-          response=$(curl -s -H "Authorization: Bearer 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" "https://api.github.com/user/repos")
+          response=$(curl -s -H "Authorization: Bearer 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" "https://api.github.com/user/subscriptions")
           echo "::set-output name=response::$response"
       - name: Check for New Repositories
         run: |
