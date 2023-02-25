@@ -1,7 +1,8 @@
 name: New Repositories
 on:
-  schedule:
-    - cron: '* * * * *' # Run every day at midnight
+  push:
+    branches:
+      - master
 jobs:
   list_repositories:
     name: List New Repositories
