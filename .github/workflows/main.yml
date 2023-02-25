@@ -1,32 +1,23 @@
-name: Create Workflow
-
+# This is a basic workflow to help you get started with Actions
+ 
+name:
+  First Cron Job
+ 
+  # Controls when the workflow will run
 on:
+  # Triggers the workflow every 5 minutes
   schedule:
-    - cron: '* * * * *'  # run every hour
-
+    - cron: "* * * * *"
+ 
+      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  create-workflow:
+  # This workflow contains a single job called "cron"
+  cron:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+ 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Check for new repositories
-        id: list-repos
-        uses: octokit/request-action@v2.x
-        with:
-          route: GET /user/repos
-          headers: |
-            Authorization: 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
-          query: |
-            sort: created
-            direction: desc
-      - name: Create workflow in new repositories
-        uses: peter-evans/create-pull-request@v3.9.1
-        with:
-          commit-message: "Add workflow file"
-          branch: "add-workflow-file"
-          title: "Add workflow file"
-          body: |
-            This pull request adds a workflow file to the repository.
-          path: ".github/workflows/main.yml"
-          branch-suffix: timestamp
-          token: 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
-        if: ${{ steps.list-repos.outputs.data[0].created_at > github.event.created_at }}
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
