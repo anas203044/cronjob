@@ -1,0 +1,40 @@
+name: New Repo Workflow
+on:
+  repository:
+    types: [created]
+
+jobs:
+  create-workflow:
+    name: Create Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Workflow File
+        run: |
+          echo 'name: My Workflow' > .github/workflows/my-workflow.yml
+          echo 'on:' >> .github/workflows/my-workflow.yml
+          echo '  push:' >> .github/workflows/my-workflow.yml
+          echo '    branches:' >> .github/workflows/my-workflow.yml
+          echo '      - master' >> .github/workflows/my-workflow.yml
+          echo '' >> .github/workflows/my-workflow.yml
+          echo 'env:' >> .github/workflows/my-workflow.yml
+          echo '  SONAR_TOKEN: squ_92ce500b4383353ef21219293c07ffff35128a09' >> .github/workflows/my-workflow.yml
+          echo '  SONAR_HOST_URL: http://54.73.70.164:9000' >> .github/workflows/my-workflow.yml
+          echo '' >> .github/workflows/my-workflow.yml
+          echo 'jobs:' >> .github/workflows/my-workflow.yml
+          echo '  build:' >> .github/workflows/my-workflow.yml
+          echo '    name: Build' >> .github/workflows/my-workflow.yml
+          echo '    runs-on: ubuntu-latest' >> .github/workflows/my-workflow.yml
+          echo '    steps:' >> .github/workflows/my-workflow.yml
+          echo '      - uses: anas203044/global/globalaction@main' >> .github/workflows/my-workflow.yml
+          echo '        with:' >> .github/workflows/my-workflow.yml
+          echo '          sonar-token: ${{ env.SONAR_TOKEN }}' >> .github/workflows/my-workflow.yml
+          echo '          sonar-host-url: ${{ env.SONAR_HOST_URL }}' >> .github/workflows/my-workflow.yml
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "Add My Workflow file"
+          git push origin HEAD:main
