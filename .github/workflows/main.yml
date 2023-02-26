@@ -1,28 +1,10 @@
-name: New Repositories
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '*/1 * * * *'
+
 jobs:
-  list_repositories:
-    name: List New Repositories
+  my-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Repositories
-        id: repos
-        run: |
-          response=$(curl -s -H "Authorization: token ${{ env.GITHUB_TOKEN }}" "https://api.github.com/user/repos")
-          echo "::set-output name=response::$response"
-      - name: Check for New Repositories
-        run: |
-          previous_repos=$(cat previous_repos.txt)
-          current_repos=$(echo "${{ steps.repos.outputs.response }}" | jq -r '.[].name')
-          new_repos=$(echo "$current_repos" | grep -Fxv "$previous_repos")
-          if [ -n "$new_repos" ]; then
-            echo "New repositories added: $new_repos"
-          else
-            echo "No new repositories"
-          fi
-          echo "$current_repos" > previous_repos.txt
-        env:
-          GITHUB_TOKEN: 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
+      - name: My first step
+        run: echo "Hello, World!"
