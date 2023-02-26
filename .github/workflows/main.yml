@@ -25,4 +25,4 @@ jobs:
           fi
           echo "$current_repos" > previous_repos.txt
         env:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: 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
